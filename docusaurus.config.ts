@@ -84,15 +84,23 @@ const config: Config = {
           items: [
             {
               label: "Frontend",
-              to: "/category/frontend",
+              to: "/docs",
             },
             {
               label: "Chatbot",
-              to: "/category/chatbot",
+              to: "/",
             },
             {
-              label: "Email service",
-              to: "/category/email-service",
+              label: "Calendar",
+              to: "/",
+            },
+            {
+              label: "Regulatory Monitor",
+              to: "/",
+            },
+            {
+              label: "Map",
+              to: "/",
             },
           ],
         },
