@@ -82,26 +82,7 @@ const config: Config = {
         {
           title: "Docs",
           items: [
-            {
-              label: "Frontend",
-              to: "/docs",
-            },
-            {
-              label: "Chatbot",
-              to: "/",
-            },
-            {
-              label: "Calendar",
-              to: "/",
-            },
-            {
-              label: "Regulatory Monitor",
-              to: "/",
-            },
-            {
-              label: "Map",
-              to: "/",
-            },
+            
           ],
         },
         {
