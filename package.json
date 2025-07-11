@@ -15,7 +15,6 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@docusaurus/core": "3.8.1",
     "@docusaurus/preset-classic": "3.8.1",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",
@@ -24,6 +23,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@docusaurus/core": "^3.8.1",
     "@docusaurus/module-type-aliases": "3.8.1",
     "@docusaurus/tsconfig": "3.8.1",
     "@docusaurus/types": "3.8.1",

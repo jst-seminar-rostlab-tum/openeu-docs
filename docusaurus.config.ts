@@ -5,8 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'OpenEU documentation',
+  tagline: 'OpenEU is cool',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -15,15 +15,15 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://docs-openeu.netlify.app',
+  url: 'https://openeu.csee.tech',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'csee', // Usually your GitHub org/user name.
+  projectName: 'openeu', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -45,7 +45,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/jst-seminar-rostlab-tum/openeu-frontend',
         },
         blog: {
           showReadingTime: true,
@@ -56,7 +56,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+            'https://github.com/jst-seminar-rostlab-tum/openeu-frontend',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -73,70 +73,83 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'My Site',
-      logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
-      },
+      title: 'OpenEU',
+
       items: [
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Documnetation',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/jst-seminar-rostlab-tum/openeu-frontend',
           label: 'GitHub',
           position: 'right',
         },
       ],
     },
     footer: {
-      style: 'dark',
+      style: "dark",
       links: [
         {
-          title: 'Docs',
+          title: "Docs",
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: "Frontend",
+              to: "/category/frontend",
+            },
+            {
+              label: "Chatbot",
+              to: "/category/chatbot",
+            },
+            {
+              label: "Email service",
+              to: "/category/email-service",
             },
           ],
         },
         {
-          title: 'Community',
+          title: "GitHub Repositories",
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: "Frontend",
+              href: "https://github.com/jst-seminar-rostlab-tum/wfp-hunger-map",
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              label: "Chatbot & email service",
+              href: "https://github.com/jst-seminar-rostlab-tum/wpf-chatbot-backend",
             },
             {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
+              label: "Backend",
+              href: "https://github.com/org-wfp/hml-be",
             },
           ],
         },
         {
-          title: 'More',
+          title: "More",
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
+              label: "JavaScript Technology Practical course",
+              href: "https://nutritious-request-5b4.notion.site/Practical-Course-JavaScript-Technology-55c4e3f51a3d4f86bc03f505fb0dc01a",
             },
             {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              label: "CSEE",
+              href: "https://www.csee.tech/",
+            },
+            {
+              label: "UN World Food Programme",
+              href: "https://www.wfp.org/",
+            },
+            {
+              label: "German Aerospace Center",
+              href: "https://www.dlr.de/en",
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Center for Software Engineering Excellence GmbH - Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
