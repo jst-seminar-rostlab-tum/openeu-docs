@@ -1,0 +1,9 @@
+{
+    "label": "OpenEU Documentation",
+    "position": 1,
+    "link": {
+      "slug": "/",
+      "type": "generated-index",
+      "description": "This is the Documentation for the OpenEU Project. The Documentation is an extensive guideline of how things work, coding guidelines, how to guidelines etc."
+    }
+  }
