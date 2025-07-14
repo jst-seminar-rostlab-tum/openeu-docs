@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# OpenEU Frontend
+# Introduction
 
 **Author:** `Nguyen Duc Trung`
 
