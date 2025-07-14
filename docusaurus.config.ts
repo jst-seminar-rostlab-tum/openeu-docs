@@ -82,23 +82,26 @@ const config: Config = {
         {
           title: "Docs",
           items: [
-            
+            {
+              label: "Frontend docs",
+              href: "https://docs-openeu.netlify.app/category/frontend",
+            },
+            {
+              label: "Backend docs",
+              href: "https://docs-openeu.netlify.app/",
+            },
           ],
         },
         {
           title: "GitHub Repositories",
           items: [
             {
-              label: "Frontend",
-              href: "https://github.com/jst-seminar-rostlab-tum/wfp-hunger-map",
+              label: "OpenEU Frontend",
+              href: "https://github.com/jst-seminar-rostlab-tum/openeu-frontend",
             },
             {
-              label: "Chatbot & email service",
-              href: "https://github.com/jst-seminar-rostlab-tum/wpf-chatbot-backend",
-            },
-            {
-              label: "Backend",
-              href: "https://github.com/org-wfp/hml-be",
+              label: "OpenEU Backend",
+              href: "https://github.com/jst-seminar-rostlab-tum/category/frontend",
             },
           ],
         },
@@ -114,12 +117,8 @@ const config: Config = {
               href: "https://www.csee.tech/",
             },
             {
-              label: "UN World Food Programme",
-              href: "https://www.wfp.org/",
-            },
-            {
-              label: "German Aerospace Center",
-              href: "https://www.dlr.de/en",
+              label: "Project Europe",
+              href: "https://www.projecteurope.co/",
             },
           ],
         },
