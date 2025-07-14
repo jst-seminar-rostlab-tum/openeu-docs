@@ -1,3 +1,66 @@
+
+
+# STRUCTURE
+
+```
+/frontend
+  ├── introduction
+  │     - Frontend tech stack overview
+  │
+  ├── authentication
+  │     - Session management
+  │     - Auth providers (OAuth, etc.)
+  │     - JWT and cookies
+  │     - Protected routes
+  │
+  ├── data fetching
+  │     - React Query usage
+  │     - Built-in caching
+  │     - Server actions
+  │     - Query invalidation
+  │     - Mutations
+  │     - OpenAPI model generation
+  │
+  ├── maps
+  │     - Leaflet setup
+  │     - Map layers
+  │     - GeoJSON integration
+  │
+  └── deployment
+        - Deployment targets (e.g., Vercel, Netlify)
+        - Required environment variables
+
+/backend
+  ├── introduction
+  │
+  ├── scheduling + jobs
+  │     - Job types and schedulers used
+  │
+  ├── search
+  │     - Search implementation and indexing
+  │
+  ├── chat
+  │     - Chat logic and architecture
+  │
+  ├── scraping
+  │     - Libraries used
+  │     - `ScraperBase` class
+  │     - Timeout handling
+  │     - Error handling strategies
+  │
+  ├── deployment
+  │     - Backend deployment details
+  │
+  ├── middleware
+  │     - Middleware patterns and examples
+  │
+  └── db
+        - Supabase as DB
+        - Declarative schema management
+        - Supabase branching strategy
+```
+
+
 # Website
 
 This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
