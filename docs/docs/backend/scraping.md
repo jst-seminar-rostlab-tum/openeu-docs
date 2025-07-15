@@ -3,7 +3,7 @@
 **Author**: `Michael Schmidmaier`
 
 OpenEU uses multiple scraper scripts to scrape publicly available information.
-Most of the scraped information is about past and upcoming meetings and events, but there is also other data, such as legislative files. All scraper scripts are in the `app/data_sources/scrapers` directory. More information on the individual data sources can be found in the [data sources documentation](sources).
+Most of the scraped information is about past and upcoming meetings and events, but there is also other data, such as legislative files. All scraper scripts are in the `app/data_sources/scrapers` directory. More information on the individual data sources can be found in the [data sources documentation](docs/backend/sources).
 
 ## 📦 Technologies
 
