@@ -54,3 +54,21 @@ This project uses **Supabase** for authentication, supporting OAuth providers su
   ```env
   DISABLE_AUTH=true
   ```
+
+## Session Expiry Notification
+- When your session expires, you will receive a notification (toast) informing you that your session has expired for security reasons and you will be logged out automatically. This helps ensure you are aware of session timeouts and can log in again as needed.
+
+## Session State Tracking
+- The application uses `sessionStorage` to track if you have had a valid session and whether the session expiration notification has already been shown. This prevents duplicate notifications and improves user experience.
+
+## Public Page Handling on Sign Out
+- When you sign out, the app checks if you are on a public page (such as `/`, `/login`, `/register`, `/privacy`, `/forgot-password`). If you are not, you will be redirected to the homepage. If you are already on the homepage, the page will refresh to reflect your signed-out state.
+
+## Token Refresh Handling
+- When your authentication token is refreshed (for example, after a period of inactivity), the new token is automatically saved in your cookies. This ensures that your session remains valid and you do not need to log in again unnecessarily.
+
+## Error Handling on Sign Out
+- If there is an error during sign out, you will see a notification (toast) explaining that sign out failed, and your previous session will be restored so you can try again.
+
+## Mock Authentication for Development
+- In development mode, the app can be configured to use a mock authenticated user for testing purposes. This allows developers to simulate logged-in states without needing to go through the full authentication flow.
