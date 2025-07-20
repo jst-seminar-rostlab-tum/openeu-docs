@@ -4,6 +4,8 @@ sidebar_position: 3
 
 # Data Fetching Documentation
 
+**Author:** `Max von Storch`
+
 ## Overview
 
 The OpenEU Frontend implements a layered data fetching architecture combining **TanStack Query** for client-side state management with **Next.js Server Actions** for server-side operations.
