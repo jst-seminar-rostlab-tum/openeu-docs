@@ -60,6 +60,8 @@ This hook provides:
 - **Every other route in the frontend should be considered protected and will require authentication.**
 - If a request to a protected route does not include a valid Bearer token, it will return `401 Unauthorized`.
 
+
+
 ## Sign Out Timeout
 - Sessions automatically expire after 24 hours (session timeout).
 - When the session expires, cookies are cleared and the user is signed out.
@@ -78,6 +80,8 @@ This hook provides:
 
 ## Public Page Handling on Sign Out
 - When you sign out, the app checks if you are on a public page (such as `/`, `/login`, `/register`, `/privacy`, `/forgot-password`). If you are not, you will be redirected to the homepage. If you are already on the homepage, the page will refresh to reflect your signed-out state.
+
+[`useAuth` handles this logic](https://github.com/jst-seminar-rostlab-tum/openeu-frontend/blob/main/src/domain/hooks/useAuth.tsx).
 
 ## Token Refresh Handling
 - When your authentication token is refreshed (for example, after a period of inactivity), the new token is automatically saved in your cookies. This ensures that your session remains valid and you do not need to log in again unnecessarily.
