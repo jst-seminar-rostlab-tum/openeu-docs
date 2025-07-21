@@ -13,6 +13,18 @@ This project uses **Supabase** for authentication, supporting OAuth providers su
 - When a user logs in (e.g., with Google), a JWT is issued and stored in cookies.
 - The session (JWT) is valid for 24 hours. After this period, the user is automatically signed out and cookies are cleared.
 
+
+## Configuring JWT Validity in Supabase
+
+- The validity period (expiration time) of JWT tokens can be configured directly in the Supabase dashboard.
+- To change the JWT expiration:
+  1. Go to your [Supabase project dashboard](https://app.supabase.com/).
+  2. Select your project.
+  3. Navigate to **Authentication** > **Settings** > **JWT**.
+  4. Adjust the **JWT expiry** (in seconds) to your desired value.
+  5. Save your changes.
+- This setting controls how long user sessions remain valid before requiring re-authentication.
+
 ## Auth Providers
 - **Supabase** handles authentication and supports OAuth (e.g., Google sign-in).
 - Users can log in using their Google account.
