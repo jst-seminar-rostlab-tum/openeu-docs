@@ -4,6 +4,9 @@ sidebar_position: 2
 
 # Scheduling & Jobs
 
+**Author**: `Nils Jansen`
+
+
 ## Overview
 
 The scheduling system manages periodic execution of background jobs using:
