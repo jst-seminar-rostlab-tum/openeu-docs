@@ -4,6 +4,8 @@ sidebar_position: 2
 
 # Auth
 
+**Author:** `Nguyen Duc Trung`
+
 This project uses **Supabase** for authentication, supporting OAuth providers such as Google. Below you'll find details on how authentication, session management, and route protection work in our frontend and backend.
 
 ## Session Management
@@ -28,7 +30,22 @@ This project uses **Supabase** for authentication, supporting OAuth providers su
   3. Copy the value of the `token` cookie.
 - The JWT is used for server-side authentication.
 
+## `useAuth` Hook
+
+For the full implementation and latest updates of the authentication logic, see the [`useAuth` hook in the openeu-frontend repository on GitHub](https://github.com/jst-seminar-rostlab-tum/openeu-frontend/blob/main/src/domain/hooks/useAuth.tsx).
+
+Also check out relevant authentification action in frontend repo: 
+- [Auth action implementation](https://github.com/jst-seminar-rostlab-tum/openeu-frontend/blob/main/src/domain/actions/auth.ts): Core authentication actions and logic.
+- [Login with Google action](https://github.com/jst-seminar-rostlab-tum/openeu-frontend/blob/main/src/domain/actions/login-with-google.ts): Implementation for Google OAuth login.
+
+This hook provides:
+- Real-time authentication state (user, loading, signOut)
+- Automatic session expiration and notification
+- Token refresh and cookie management
+- Sign out logic with public route handling
+
 ## Protected Routes
+
 - Most endpoints are protected and require a valid JWT in the `Authorization` header.
 - If a request does not include a valid Bearer token, it will return `401 Unauthorized`.
 - The following routes are **public** (do not require authentication):
@@ -50,10 +67,6 @@ This project uses **Supabase** for authentication, supporting OAuth providers su
   ```env
   SUPABASE_JWT_SECRET=<get it from Notion>
   ```
-- For testing, you can disable authentication by setting:
-  ```env
-  DISABLE_AUTH=true
-  ```
 
 ## Session Expiry Notification
 - When your session expires, you will receive a notification (toast) informing you that your session has expired for security reasons and you will be logged out automatically. This helps ensure you are aware of session timeouts and can log in again as needed.
@@ -70,5 +83,15 @@ This project uses **Supabase** for authentication, supporting OAuth providers su
 ## Error Handling on Sign Out
 - If there is an error during sign out, you will see a notification (toast) explaining that sign out failed, and your previous session will be restored so you can try again.
 
-## Mock Authentication for Development
-- In development mode, the app can be configured to use a mock authenticated user for testing purposes. This allows developers to simulate logged-in states without needing to go through the full authentication flow.
+
+## How to View Your Authentication Cookie in Chrome
+
+To manually view or copy your authentication token (JWT) stored in cookies using Google Chrome:
+
+1. Open your app in Chrome and log in.
+2. Right-click anywhere on the page and select **Inspect** to open DevTools.
+3. Go to the **Application** tab in DevTools.
+4. In the left sidebar, expand the **Cookies** section and select your app's URL (e.g., `http://localhost:3002`).
+5. In the main panel, look for the `token` cookie. You can view or copy its value for use in API requests or debugging.
+
+This is useful for testing authenticated requests or debugging authentication issues.
