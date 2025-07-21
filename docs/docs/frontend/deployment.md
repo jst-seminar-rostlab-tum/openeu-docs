@@ -6,14 +6,15 @@ sidebar_position: 5
 
 **Author:** `Daniel Bier`
 
-The OpenEU Frontend is deployed on **Netlify**, providing continuous deployment from the GitHub repository with automatic previews for pull requests and production deployments from the main branch.
+The OpenEU Frontend is deployed on **Netlify**, providing continuous deployment from the GitHub repository with automatic previews for pull requests and deployments from the main branch.
 
 ---
 
 ## 🚀 Deployment Targets
 
 - [**Netlify**](https://www.netlify.com/) – Primary deployment platform
-  - Production site: https://openeu.netlify.app/
+  - Website: https://openeu.netlify.app
+  - Custom domain: https://openeu.csee.tech
   - Automatic deployments from the `main` branch
   - Preview deployments for pull requests
 
@@ -70,16 +71,20 @@ The following environment variables are required for the application to function
 
 ## 📋 Deployment Process
 
-### Automatic Deployment
 
-1. Push changes to the GitHub repository
-2. Netlify automatically builds and deploys:
-   - Pull requests generate preview deployments
-   - Merges to `main` trigger production deployments
+## 🔄 Continuous Integration/Continuous Deployment (CI/CD)
+
+The project uses GitHub Actions for CI and Netlify for CD:
+
+1. Pull requests trigger lint and type checks via GitHub Actions
+2. Netlify deploys preview environments for each PR
+3. When merged to main, the Netlify deployment is triggered
+
+---
 
 ### Deployment Configuration
 
-The project includes a `next.config.ts` file that configures Next.js for production deployment, including:
+The project includes a `next.config.ts` file that configures Next.js for deployment, including:
 
 - Image optimization settings
 - Redirects and rewrites
@@ -89,21 +94,8 @@ The project includes a `next.config.ts` file that configures Next.js for product
 
 ## 🧪 Environment-Specific Considerations
 
-### Development vs. Production
-
-- Development uses local environment variables and localhost API endpoints
-- Production uses Netlify environment variables and production API endpoints
-- Feature flags can be used to enable/disable features in specific environments
+- Deployment uses Netlify environment variables
+- Locally you can adjust the environment variables and API endpoints to point to the local instance of the backend and supabase
 
 ---
 
-## 🔄 Continuous Integration/Continuous Deployment (CI/CD)
-
-The project uses GitHub Actions for CI and Netlify for CD:
-
-1. Pull requests trigger lint and type checks via GitHub Actions
-2. Netlify deploys preview environments for each PR
-3. When merged to main, Netlify automatically deploys to production
-4. The deployment includes running the build process with production optimizations
-
----
