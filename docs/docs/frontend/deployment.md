@@ -18,6 +18,9 @@ The OpenEU Frontend is deployed on **Netlify**, providing continuous deployment 
   - Automatic deployments from the `main` branch
   - Preview deployments for pull requests
 
+![Netlify Production Domain Configuration](./assets/NetlifyProductionDomain.png)
+*Screenshot of the Netlify production domain configuration for OpenEU*
+
 ---
 
 ## 🔑 Environment Variables
