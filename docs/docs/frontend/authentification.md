@@ -44,19 +44,21 @@ This hook provides:
 - Token refresh and cookie management
 - Sign out logic with public route handling
 
-## Protected Routes
+## Public Pages
 
-- Most endpoints are protected and require a valid JWT in the `Authorization` header.
-- If a request does not include a valid Bearer token, it will return `401 Unauthorized`.
-- The following routes are **public** (do not require authentication):
+[Middleware that handles public page](https://github.com/jst-seminar-rostlab-tum/openeu-frontend/blob/main/src/lib/supabase/middleware.ts)
+
+- The following routes in the frontend are **public** and do not require authentication:
+  - `/privacy`
   - `/`
-  - `/docs`
-  - `/redoc`
-  - `/openapi.json`
-  - `/scheduler/tick`
-  - `/topics`
-- All other routes are protected.
-
+  - `/login`
+  - `/register`
+  - `/forgot-password`
+  - `/auth/confirm`
+  - `/auth/callback`
+  - `/auth/error`
+- **Every other route in the frontend should be considered protected and will require authentication.**
+- If a request to a protected route does not include a valid Bearer token, it will return `401 Unauthorized`.
 
 ## Sign Out Timeout
 - Sessions automatically expire after 24 hours (session timeout).
