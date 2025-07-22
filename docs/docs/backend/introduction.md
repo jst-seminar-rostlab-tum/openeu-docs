@@ -40,15 +40,15 @@ The OpenEU Backend is built using **FastAPI** and deployed on **Render**, levera
 - [**Scrapy**](https://scrapy.org/) – Professional web scraping framework for large-scale data extraction.
 - [**Playwright**](https://playwright.dev/) – Browser automation for dynamic content scraping.
 - [**crawl4ai**](https://crawl4ai.com/) – AI-powered web crawling and content extraction.
-- [**BeautifulSoup (bs4)**](https://www.crummy.com/software/BeautifulSoup/) – HTML/XML parsing library.
+- [**BeautifulSoup)**](https://www.crummy.com/software/BeautifulSoup/) – HTML/XML parsing library.
 - [**Requests**](https://requests.readthedocs.io/) – HTTP library for API integrations.
 
 ---
 
 ## 📧 Communication & Translation
 
-- [**Brevo (formerly Sendinblue)**](https://www.brevo.com/) – Transactional email service for notifications and alerts.
-- [**DeepL**](https://www.deepl.com/) – Professional translation service for multilingual content.
+- [**Brevo**](https://www.brevo.com/) – Transactional email service for notifications and alerts.
+- [**OpenAI Translation**](https://openai.com/) – Custom LLM-powered multilingual translation to English with custom prompt.
 - [**Jinja2**](https://jinja.palletsprojects.com/) – Modern templating engine for email and document generation.
 
 ---
@@ -63,8 +63,9 @@ The OpenEU Backend is built using **FastAPI** and deployed on **Render**, levera
 ## 🔄 Background Jobs & Scheduling
 
 - [**schedule**](https://schedule.readthedocs.io/) – Python job scheduling library for automated tasks.
-- [**cron-job.org**](https://cron-job.org/) – External cron service for triggering scheduled endpoints.
-- **Custom Job System** – Dedicated API endpoints for each background task with token-based security.
+- **Custom JobScheduler** – Enhanced scheduling wrapper with timeout handling and error tracking.
+- **Background Processing** – Process-based and thread-based execution for different job types.
+- For detailed information, see our [Scheduling & Jobs documentation](./scheduling_jobs.md).
 
 ---
 
@@ -82,7 +83,7 @@ The OpenEU Backend is built using **FastAPI** and deployed on **Render**, levera
 - [**Render**](https://render.com/) – Cloud deployment platform with automatic builds and scaling.
 - [**Docker**](https://www.docker.com/) – Containerization for consistent development and deployment environments.
 - [**GitHub Actions**](https://github.com/features/actions) – Automated CI/CD pipeline for testing and deployment.
-- **Supabase Branching** – Database preview deployments for feature development.
+- [**Supabase Branching**](https://supabase.com/docs/guides/deployment/branching) – Database preview deployments for feature development.
 
 ---
 
