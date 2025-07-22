@@ -3,7 +3,9 @@ sidebar_position: 4
 ---
 # Maps
 
-The map leverages leaflet and React-Leaflet to create an interactive visualization platform for displaying country-level data and geographic insights. The map consists of several core components that are located in src/components/Map. Map.tsx is the main component responsible for the map functionality using several other components.
+**Author:** `Tabea Klein`
+
+The map leverages leaflet and React-Leaflet to create an interactive visualization platform for displaying country-level data and geographic insights. The map consists of several core components that are located in ```src/components/map```. ```Map.tsx``` is the main component responsible for the map functionality using several other components.
 
 ## Leaflet setup
 The leaflet map component can be configured with properties in the MapContainer element:
