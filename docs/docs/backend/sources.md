@@ -1,4 +1,5 @@
 
+
 # Sources
 
 **Author**: `Julius Kleinle`
@@ -8,7 +9,6 @@ OpenEU harvests structured information from a curated set of institutional websi
 
 [**Fig Jam Overview**](https://www.figma.com/board/aiuBPTYWxoqA0ZSTZmp1c2/Concept-Board?node-id=0-1&p=f&t=img3rV4vu2yZZR52-0)
 
-
 ## Data-Sources Catalogue
 ---
 
@@ -17,7 +17,7 @@ OpenEU harvests structured information from a curated set of institutional websi
 - **Reason:** Tracks legislative sessions, committee meetings, and agendas for transparency and research on Belgian regional politics.
 - **Description:** Official portal of the Flemish Parliament—the unicameral legislature for the Flemish Community and Region of Belgium—where agendas, committee meetings, live streams and verbatim records are published for public scrutiny. The “Vergaderingen en verslagen” calendar hosts a searchable log of every sitting that feeds our scraper. [vlaamsparlement.be](https://www.vlaamsparlement.be/nl/parlementair-werk/vergaderingen-en-verslagen)[docs.vlaamsparlement.be](https://docs.vlaamsparlement.be/docs/varia/brochures/Infobrochures%20update%202021/VP_A5%20brochure%20ENG_Versie_0521_DRUK.pdf)
 - **URL Pattern:**  
-  `https://www.vlaamsparlement.be/nl/parlementair-werk/vergaderingen-en-verslagen?period={YYYY-MM-DD}&view=day`
+  `https://www.vlaamsparlement.be/nl/parlementair-werk/vergaderingen-en-verslagen?period=\{YYYY-MM-DD\}&view=day`
 - **Data Scraped:**  
   - **Meetings per day**: For each day in the range, all meetings are scraped.
   - **Fields:**  
@@ -42,8 +42,8 @@ OpenEU harvests structured information from a curated set of institutional websi
 - **Reason:** Provides primary legislative texts and supporting documents for German federal lawmaking.
 - **Description:** DIP (Dokumentations- und Informationssystem) is the German Bundestag’s public database that stores all printed papers (“Drucksachen”) and accompanying metadata from both the Bundestag and Bundesrat. It is the authoritative source for bills, motions and reports as they move through the federal legislative process. [Deutscher Bundestag](https://www.bundestag.de/en/documents/parliamentary_documentation)
 - **API Endpoints:**  
-  - List: `https://search.dip.bundestag.de/api/v1/drucksache?page={page}&size=50&f.datum.start={YYYY-MM-DD}&f.datum.end={YYYY-MM-DD}`
-  - Document text: `https://search.dip.bundestag.de/api/v1/drucksache-text/{id}`
+  - List: `https://search.dip.bundestag.de/api/v1/drucksache?page=\{page\}&size=50&f.datum.start=\{YYYY-MM-DD\}&f.datum.end=\{YYYY-MM-DD\}`
+  - Document text: `https://search.dip.bundestag.de/api/v1/drucksache-text/\{id\}`
 - **Data Scraped:**  
   - **Official documents ("Drucksachen")**: Parliamentary bills, motions, reports, etc.
   - **Fields:**  
@@ -67,8 +67,8 @@ OpenEU harvests structured information from a curated set of institutional websi
 - **Reason:** Enables analysis of debates, speeches, and voting behavior in Germany’s federal parliament.
 - **Description:** The same DIP platform also offers full stenographic transcripts (“Plenarprotokolle”) of every plenary sitting, allowing researchers to read speeches, interventions and vote results verbatim. These transcripts are linked to the corresponding bills and are permanently archived on the Bundestag site. [Deutscher Bundestag](https://www.bundestag.de/en/documents/parliamentary_documentation)
 - **API Endpoints:**  
-  - List: `https://search.dip.bundestag.de/api/v1/plenarprotokoll?page={page}&size=50&f.datum.start={YYYY-MM-DD}&f.datum.end={YYYY-MM-DD}`
-  - Protocol text: `https://search.dip.bundestag.de/api/v1/plenarprotokoll-text/{id}`
+  - List: `https://search.dip.bundestag.de/api/v1/plenarprotokoll?page=\{page\}&size=50&f.datum.start=\{YYYY-MM-DD\}&f.datum.end=\{YYYY-MM-DD\}`
+  - Protocol text: `https://search.dip.bundestag.de/api/v1/plenarprotokoll-text/\{id\}`
 - **Data Scraped:**  
   - **Plenary session protocols**: Full transcripts of Bundestag sessions.
   - **Fields:**  
@@ -92,8 +92,8 @@ OpenEU harvests structured information from a curated set of institutional websi
 - **Reason:** Monitors EU-level scientific and innovation policy events, useful for stakeholders and researchers.
 - **Description:** Events pages on research-and-innovation.ec.europa.eu are run by the European Commission’s Directorate-General for Research & Innovation and advertise conferences, info-days and stakeholder workshops connected to EU R&I policy and programmes such as Horizon Europe. Each listing contains dates, venue and thematic focus, making the site a one-stop calendar for the EU research community. [Research and innovation](https://research-and-innovation.ec.europa.eu/events_en)
 - **URLs:**  
-  - Main: `https://research-and-innovation.ec.europa.eu/events/upcoming-events_en?f[0]=oe_event_event_date:bt|{start_date}|{end_date}&page={page}`
-  - RSS: `https://research-and-innovation.ec.europa.eu/node/4/rss_en?f[0]=oe_event_event_date:bt|{start_date}|{end_date}`
+  - Main: `https://research-and-innovation.ec.europa.eu/events/upcoming-events_en?f[0]=oe_event_event_date:bt|\{start_date\}|\{end_date\}&page=\{page\}`
+  - RSS: `https://research-and-innovation.ec.europa.eu/node/4/rss_en?f[0]=oe_event_event_date:bt|\{start_date\}|\{end_date\}`
 - **Data Scraped:**  
   - **EU research and innovation events**: Conferences, workshops, info days, etc.
   - **Fields:**  
@@ -143,7 +143,7 @@ OpenEU harvests structured information from a curated set of institutional websi
 - **Reason:** Follows the progress and status of EU laws, supporting legal research and policy tracking.
 - **Description:** Launched in 2024, the EU Law Tracker on eur-lex.europa.eu visualises every step of ordinary legislative procedures—from Commission proposal to final adoption—in plain language. It aggregates metadata, actors and deadlines so citizens can follow a file’s progress in real time. [EUR-Lex](https://eur-lex.europa.eu/collection/legislative-procedures.html)
 - **URL Pattern:**  
-  `https://law-tracker.europa.eu/results?eurovoc=%5B%22{topic_code},DOM%22%5D&searchType=topics&sort=DOCD_DESC&page={page}&pageSize=50&lang=en`
+  `https://law-tracker.europa.eu/results?eurovoc=%5B%22\{topic_code\},DOM%22%5D&searchType=topics&sort=DOCD_DESC&page=\{page\}&pageSize=50&lang=en`
 - **Data Scraped:**  
   - **EU legislative procedures**: Laws and procedures filtered by topic.
   - **Fields:**  
@@ -169,7 +169,7 @@ OpenEU harvests structured information from a curated set of institutional websi
 - **Description:** OEIL is the European Parliament’s long-standing “Legislative Observatory”, a public database that monitors EU decision-making across all institutions, offering dossiers with timelines, responsible committees, rapporteurs and linked documents. It is considered the most comprehensive record of EU legislative activity. [oeil.secure.europarl.europa.eu](https://oeil.secure.europarl.europa.eu/)
 - **URLs:**  
   - Export: `https://oeil.secure.europarl.europa.eu/oeil/en/search/export/XML`
-  - Details: `https://oeil.secure.europarl.europa.eu/oeil/en/procedure-file?reference={id}`
+  - Details: `https://oeil.secure.europarl.europa.eu/oeil/en/procedure-file?reference=\{id\}`
 - **Data Scraped:**  
   - **EU legislative files**: Status, progress, and details of EU legislation.
   - **Fields:**  
@@ -198,7 +198,7 @@ OpenEU harvests structured information from a curated set of institutional websi
 - **Reason:** Reveals the behind-the-scenes work that shapes EU Council decisions.
 - **Description:** The meetings calendar on consilium.europa.eu lists more than 150 specialised working parties and committees that prepare Council decisions. Updated daily by the Council’s General Secretariat, it shows date, venue and subject for each technical meeting. [Consilium](https://www.consilium.europa.eu/en/meetings/calendar/)
 - **URL Pattern:**  
-  `https://www.consilium.europa.eu/en/meetings/calendar/?DateFrom={YYYY/MM/DD}&DateTo={YYYY/MM/DD}&category=mpo&page={page}`
+  `https://www.consilium.europa.eu/en/meetings/calendar/?DateFrom=\{YYYY/MM/DD\}&DateTo=\{YYYY/MM/DD\}&category=mpo&page=\{page\}`
 - **Data Scraped:**  
   - **Preparatory bodies meetings**: Meetings of working parties, committees, etc.
   - **Fields:**  
@@ -222,7 +222,7 @@ OpenEU harvests structured information from a curated set of institutional websi
 - **Reason:** Captures high-level decision-making and policy direction at the EU’s intergovernmental level.
 - **Description:** The same Council calendar also features high-level European Council summits, sectoral Council configurations and informal ministerial meetings, giving a forward view of top-tier EU decision-making. Entries include start/end dates, host city and broad agenda. [Consilium](https://www.consilium.europa.eu/en/meetings/calendar/)
 - **URL Pattern:**  
-  `https://www.consilium.europa.eu/en/meetings/calendar/?DateFrom={YYYY/MM/DD}&DateTo={YYYY/MM/DD}&category=meeting&page={page}`
+  `https://www.consilium.europa.eu/en/meetings/calendar/?DateFrom=\{YYYY/MM/DD\}&DateTo=\{YYYY/MM/DD\}&category=meeting&page=\{page\}`
 - **Data Scraped:**  
   - **Summit and ministerial meetings**: High-level Council meetings.
   - **Fields:**  
@@ -244,7 +244,7 @@ OpenEU harvests structured information from a curated set of institutional websi
 - **Reason:** Essential for tracking the legislative agenda and activities of the EU’s directly elected body.
 - **Description:** The “Meetings-search” tool on europarl.europa.eu/plenary lets users query past and upcoming plenary sittings and committee meetings by date. Each result page links to agendas, documents and live-streaming info provided by the European Parliament. [European Parliament](https://www.europarl.europa.eu/plenary/en/agendas.html)
 - **URL Pattern:**  
-  `https://www.europarl.europa.eu/plenary/en/meetings-search.html?isSubmitted=true&dateFrom={DD%2FMM%2FYYYY}&townCode=&loadingSubType=false&meetingTypeCode=&retention=TODAY&page={page}`
+  `https://www.europarl.europa.eu/plenary/en/meetings-search.html?isSubmitted=true&dateFrom=\{DD%2FMM%2FYYYY\}&townCode=&loadingSubType=false&meetingTypeCode=&retention=TODAY&page=\{page\}`
 - **Data Scraped:**  
   - **European Parliament plenary meetings**: All meetings for a given date.
   - **Fields:**  
@@ -267,7 +267,7 @@ OpenEU harvests structured information from a curated set of institutional websi
 - **Reason:** Provides insight into MEP activities, lobbying, and transparency.
 - **Description:** Within Parliament’s “Ethics & Transparency” section, the “Search MEP meetings” interface publishes the mandatory disclosure of official meetings between MEPs and interest-representatives, listing date, place, theme and participants. It underpins transparency rules introduced after 2019. [European Parliament](https://www.europarl.europa.eu/meps/en/search-meetings)
 - **URL Pattern:**  
-  `https://www.europarl.europa.eu/meps/en/search-meetings?fromDate={DD/MM/YYYY}&toDate={DD/MM/YYYY}&page={page}`
+  `https://www.europarl.europa.eu/meps/en/search-meetings?fromDate=\{DD/MM/YYYY\}&toDate=\{DD/MM/YYYY\}&page=\{page\}`
 - **Data Scraped:**  
   - **Meetings of Members of the European Parliament**: Official meetings, including attendees.
   - **Fields:**  
@@ -294,10 +294,10 @@ OpenEU harvests structured information from a curated set of institutional websi
 - **Reason:** Enables monitoring of Dutch national legislative activity and committee work.
 - **Description:** Debat & Vergadering on tweedekamer.nl provides the daily schedule of plenary sessions and committee meetings of the Dutch lower house, with live-stream links and background files. The agenda is organised by date and is the primary transparency channel for Dutch parliamentary business. [tweedekamer.nl](https://www.tweedekamer.nl/debat_en_vergadering)
 - **Agenda by Date:**  
-  `https://www.tweedekamer.nl/debat_en_vergadering?date={DD-MM-YYYY}`
+  `https://www.tweedekamer.nl/debat_en_vergadering?date=\{DD-MM-YYYY\}`
 - **Meeting Details:**  
   URLs found in `data-href` or `<a>` tags, e.g.  
-  `https://www.tweedekamer.nl{data-href}`
+  `https://www.tweedekamer.nl\{data-href\}`
 - **Data Scraped:**  
   - **Dutch House of Representatives meetings**: All meetings for a given date.
   - **Fields:**  
@@ -326,7 +326,7 @@ OpenEU harvests structured information from a curated set of institutional websi
 - **Reason:** Tracks the priorities and activities of the rotating EU Council presidency.
 - **Description:** polish-presidency.consilium.europa.eu hosts the official calendar for Poland’s 2025 Presidency of the Council of the EU, listing every presidency-branded meeting—from Coreper to ministerials and cultural events—across Brussels, Luxembourg and Poland. [Polish Presidency of the EU](https://polish-presidency.consilium.europa.eu/en/events/)
 - **URL Pattern:**  
-  `https://polish-presidency.consilium.europa.eu/events/print/?StartDate={YYYY-MM-DD}&EndDate={YYYY-MM-DD}`
+  `https://polish-presidency.consilium.europa.eu/events/print/?StartDate=\{YYYY-MM-DD\}&EndDate=\{YYYY-MM-DD\}`
 - **Data Scraped:**  
   - **Meetings during the Polish EU Council Presidency**: All events in the date range.
   - **Fields:**  
@@ -349,7 +349,7 @@ OpenEU harvests structured information from a curated set of institutional websi
 - **Reason:** Follows Spanish national legislative processes and committee work.
 - **Description:** congreso.es publishes a day-by-day agenda of plenary sittings and committee meetings of Spain’s lower chamber, including session notes, press releases and live video. It is the main information channel for parliamentary proceedings in Madrid. [Congreso](https://www.congreso.es/en/home)
 - **URL Pattern:**  
-  `https://www.congreso.es/en/agenda?p_p_id=agenda&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_agenda_mvcPath=cambiaragenda&_agenda_tipoagenda=1&_agenda_dia={DD}&_agenda_mes={MM}&_agenda_anio={YYYY}`
+  `https://www.congreso.es/en/agenda?p_p_id=agenda&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_agenda_mvcPath=cambiaragenda&_agenda_tipoagenda=1&_agenda_dia=\{DD\}&_agenda_mes=\{MM\}&_agenda_anio=\{YYYY\}`
 - **Data Scraped:**  
   - **Spanish parliamentary commission meetings**: All meetings for a given day.
   - **Fields:**  
@@ -373,7 +373,7 @@ OpenEU harvests structured information from a curated set of institutional websi
 - **Reason:** Offers a high-level view of the Parliament’s activities and priorities.
 - **Description:** The “Weekly Agenda” page on the EP Newsroom offers a media-oriented snapshot of all parliamentary activities for a given ISO week—plenary votes, committee hearings, delegation trips and press points—so journalists can plan coverage. [European Parliament](https://www.europarl.europa.eu/news/en/agenda/weekly-agenda)
 - **URL Pattern:**  
-  `https://www.europarl.europa.eu/news/en/agenda/weekly-agenda/{YYYY}-{WW}`
+  `https://www.europarl.europa.eu/news/en/agenda/weekly-agenda/\{YYYY\}-\{WW\}`
 - **Data Scraped:**  
   - **Weekly agenda of the European Parliament**: All events for each week.
   - **Fields:**  
@@ -385,7 +385,7 @@ OpenEU harvests structured information from a curated set of institutional websi
     - `description`: Description
     - `embedding_input`: For embedding
 - **Comments:**  
-	- URL: {WW} is the ISO week number.
+	- URL: \{WW\} is the ISO week number.
 	- Scrapes the weekly agenda page for each ISO week in the date range.
 	- Extracts all event types (plenary, committee, delegations, etc.).
 	- Uses multiple parsing functions for different event types.
@@ -419,4 +419,3 @@ OpenEU harvests structured information from a curated set of institutional websi
 
 
 Fig Jam Overview Link: https://www.figma.com/board/aiuBPTYWxoqA0ZSTZmp1c2/Concept-Board?node-id=0-1&p=f&t=img3rV4vu2yZZR52-0
-
