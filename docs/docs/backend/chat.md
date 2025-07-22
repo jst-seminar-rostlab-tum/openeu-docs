@@ -1,6 +1,6 @@
 # Chat
 
-**Author:** `Magnus Singer`
+**Author:** `Magnus Singer`, `Leon Schmid`
 
 The chat uses modern AI tools to provide the user the possibility to gather information about meetings and legislations
 using natural language. It's served via a convenient interface similar to other established chat tools and handles
@@ -19,39 +19,39 @@ queries fast and reliable.
 The workflow consists of a chain of requests that have to be sent to the backend in order to create a new chat session
 and send questions to the AI assistant. This chain consists of these steps:
 
-- In the first step, a request has to be sent to the ```/chat/start``` endpoint in order to create a new chat session.
+- In the first step, a request has to be sent to the `/chat/start` endpoint in order to create a new chat session.
   The request structure looks like this:
-    - Method: ```POST```
-    - Request body: ```{"title": TITLE_OF_CHAT_SESSION, "user_id": REQUEST_USER_ID}```
-    - Response: ``{"session_id": NEW_CHAT_SESSION_ID}``
-- In order to ask a new question, a request has to be sent to the ``/chat`` endpoint with the following strucutre:
-    - Method: ``POST``
-    - Request body: ``{"session_id": ID_OF_CHAT_SESSION, "message": NEW_QUESTION}``
-    - Response: a text stream of the response implemented with server-sent events,
-      see [here](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)
-- To retrieve all chat sessions from a user, send a request to the ``/chat/sessions`` endpoint with this structure:
-    - Method: ``GET``
-    - Request parameters: ``user_id`` being the ID of the user to get sessions for
-    - Response ``[{"id": SESSION_ID, "user_id": REQUEST_USER_ID, "title": SESSION_TITLE}, ...]``
-- In order to get all messages within a chat session, call the ``/chat/sessions/{session_id}`` endpoint, with
-  ``session_id`` being the ID of the session to get the messages for:
-    - Method: ``GET``
-    - Response:
-      ``[{"id": MESSAGE_ID, "chat_session": CHAT_SESSION_ID, "content": MESSAGE_CONTENT, "author": (either "user" or "assistant" depending on who wrote the message), "date": TIMESTAMP_OF_MESSAGE}, ...]``
+  - Method: `POST`
+  - Request body: `{"title": TITLE_OF_CHAT_SESSION, "user_id": REQUEST_USER_ID}`
+  - Response: `{"session_id": NEW_CHAT_SESSION_ID}`
+- In order to ask a new question, a request has to be sent to the `/chat` endpoint with the following strucutre:
+  - Method: `POST`
+  - Request body: `{"session_id": ID_OF_CHAT_SESSION, "message": NEW_QUESTION, "legislation_id": OPTIONAL_LEGISLATION_ID}}`
+  - Response: a text stream of the response implemented with server-sent events,
+    see [here](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)
+- To retrieve all chat sessions from a user, send a request to the `/chat/sessions` endpoint with this structure:
+  - Method: `GET`
+  - Request parameters: `user_id` being the ID of the user to get sessions for
+  - Response `[{"id": SESSION_ID, "user_id": REQUEST_USER_ID, "title": SESSION_TITLE}, ...]`
+- In order to get all messages within a chat session, call the `/chat/sessions/{session_id}` endpoint, with
+  `session_id` being the ID of the session to get the messages for:
+  - Method: `GET`
+  - Response:
+    `[{"id": MESSAGE_ID, "chat_session": CHAT_SESSION_ID, "content": MESSAGE_CONTENT, "author": (either "user" or "assistant" depending on who wrote the message), "date": TIMESTAMP_OF_MESSAGE}, ...]`
 
 ## 📄 System Prompt
 
 The system prompt is the initial instruction the AI model gets in order to answer the user and fulfil its tasks. The
-``timestamp`` placeholder is just the current time, the ``messages_text`` placeholder gets replaced with the previous
-conversation (the messages already existing in the session, limited to a maximum of 10) and the ``context_text``
+`timestamp` placeholder is just the current time, the `messages_text` placeholder gets replaced with the previous
+conversation (the messages already existing in the session, limited to a maximum of 10) and the `context_text`
 placeholder gets replaced with the context which is fetched using the Top-K-Neighbours method from the database (see
 more [here](#-context-fetching)).
 
 ```
 You are a helpful assistant working for Project Europe. Current time: {timestamp}.
 Your task is to answer questions on OpenEU, a platform for screening EU legal processes.
-You will get a question and a prior conversation if there is any and your task 
-is to use your knowledge and the knowledge of OpenEU to answer the question. Do not answer any questions outside 
+You will get a question and a prior conversation if there is any and your task
+is to use your knowledge and the knowledge of OpenEU to answer the question. Do not answer any questions outside
 the scope of OpenEU.\n\n
 *** BEGIN PREVIOUS CONVERSATION ***
 {messages_text}
@@ -91,6 +91,7 @@ response = client.chat.completions.create(
 ### Streaming the response
 
 We use the standard SSE implementation to stream the chunks to the frontend, and update the database entry on the fly by using the message and session id
+
 ```python
 full_response = "" # used to update the db entry
 for chunk in response:
@@ -106,6 +107,17 @@ for chunk in response:
 
   yield f"id: {session_id}\ndata: {current_content}\n\n" # SSR message to send to the frontend
 ```
+
+## 🏛️ Legislative Procedure Support
+
+The chat endpoint also supports an optional `legislation_id` field in the request. When provided, the backend will:
+
+- **If the legislative proposal has already been processed:**  
+  Instantly uses the pre-processed and embedded content for semantic search, providing rich and relevant context to the AI assistant.
+- **If it's the first time the proposal is requested:**  
+  Attempts to download, extract, and embed the proposal document. If successful, this new context is used for the answer. If the document is not available, the assistant falls back to any other available database information about the procedure, or informs the user if nothing is available.
+
+This logic is handled in the backend (`chat.py` and `legislation_utils.py`) and ensures that chat responses about specific legislative procedures are as accurate and context-rich as possible.
 
 ## 💡 Context-fetching
 
