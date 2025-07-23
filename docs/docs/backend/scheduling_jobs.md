@@ -6,7 +6,6 @@ sidebar_position: 2
 
 **Author**: `Nils Jansen`
 
-
 ## Overview
 
 The scheduling system manages periodic execution of background jobs using:
@@ -122,6 +121,12 @@ All job runs are logged to `scheduled_job_runs` table with:
 - Success status
 - Error message (if any)
 - Runtime metrics
+
+## Manual Job Execution
+
+Jobs can be executed manually by sending a POST request to `/scheduler/run/{job_name}` where `{job_name}` is the unique identifier of the registered job.
+
+**Authentication**: This endpoint requires a valid JWT by default. During development, authentication can be disabled by setting the environment variable `DISABLE_AUTH=true`.
 
 ## Best Practices
 
