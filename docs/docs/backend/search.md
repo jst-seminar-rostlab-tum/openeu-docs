@@ -1,5 +1,7 @@
 # Search
 
+**Author:** `Jan-Michael van der Linde`
+
 ## Overview
 
 Our search functionality uses vector search to find semantically relevant documents and meetings. The process has two stages: data preparation and search execution with query refinement and reranking.
