@@ -58,58 +58,6 @@ The following environment variables must be configured in your Render service se
 - `PYTHON_VERSION` - Python version for the container
 - `POETRY_VERSION` - Poetry version for dependency management
 
-## Local Deployment
-
-For local development and testing, you can run the backend as a Docker container on your local machine.
-
-### Prerequisites
-- Docker and Docker Compose installed on your system
-- Access to the backend repository
-
-### Build and Run Locally
-
-1. **Build the Docker Image:**
-   Navigate to the root of your backend repository and build the Docker image:
-   ```bash
-   docker build -t openeu-backend .
-   ```
-
-2. **Run the Container:**
-   You can run the container, mapping ports and providing necessary environment variables:
-   ```bash
-   docker run -p 8000:8000 \
-     -e SUPABASE_PROJECT_URL="your_supabase_url" \
-     -e SUPABASE_REST_KEY="your_supabase_rest_key" \
-     -e SUPABASE_JWT_SECRET="your_jwt_secret" \
-     openeu-backend
-   ```
-
-   Alternatively, if you have a `docker-compose.yml` file, you can use:
-   ```bash
-   docker-compose up
-   ```
-
-3. **Environment Variables for Local Development:**
-   Create a `.env` file in your backend repository root with the same environment variables listed above.
-
-## Remote Deployment
-
-### Staging/Preview Environments
-
-For testing changes before production deployment:
-
-1. **Create a new Render service** for your staging environment
-2. **Connect to a feature branch** instead of the main branch
-3. **Configure the same environment variables** as production
-4. **Deploy automatically** on pushes to the feature branch
-
-### Manual Deployment
-
-If you need to deploy manually:
-
-1. **Trigger a new deployment** from the Render dashboard
-2. **Monitor the build logs** for any issues
-3. **Verify the deployment** by checking the service health
 
 ## Supabase Preview Environments (Branching)
 
@@ -135,6 +83,27 @@ Supabase offers a powerful feature for preview environments through its branchin
 3. **Test and Merge:**
    - Test your changes against the branch database
    - Once satisfied, merge your code changes and database schema changes
+
+## Remote Deployment
+
+### Preview Deployments (Pull Requests)
+
+Render automatically creates preview deployments for each pull request, allowing you to test changes before merging to production.
+
+**Preview URL:** [https://dashboard.render.com/web/srv-d0vdf7vfte5s739i276g/previews](https://dashboard.render.com/web/srv-d0vdf7vfte5s739i276g/previews)
+
+**Features:**
+- Each PR gets its own isolated preview environment
+- Preview deployments are automatically created when PRs are opened
+- You can configure which PRs should create previews (to manage costs)
+- **Cost Note:** The longer a preview exists, the more it costs, so remember to close PRs or delete previews when no longer needed
+
+**Configuration Options:**
+- Enable/disable preview deployments for specific branches
+- Set automatic preview deletion after a certain time period
+- Configure preview environment variables (can be different from production)
+
+### Staging/Preview Environments
 
 ## Build and Deploy Process
 
