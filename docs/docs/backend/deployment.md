@@ -98,6 +98,12 @@ Render automatically creates preview deployments for each pull request, allowing
 - You can configure which PRs should create previews (to manage costs)
 - **Cost Note:** The longer a preview exists, the more it costs, so remember to close PRs or delete previews when no longer needed
 
+**Supabase Branch Integration:**
+- For each PR, a new Supabase database branch is automatically created
+- The branch is populated with seed data from [supabase/seed.sql](https://github.com/jst-seminar-rostlab-tum/openeu-backend/blob/main/supabase/seed.sql)
+- The preview backend connects to the PR-specific Supabase branch using configuration from [app/core/config.py](https://github.com/jst-seminar-rostlab-tum/openeu-backend/blob/d12295afd3dee45097b3cf79d4cb161dd76e398c/app/core/config.py#L12C5-L47C22)
+- This ensures complete isolation for testing database changes and API interactions
+
 **Configuration Options:**
 - Enable/disable preview deployments for specific branches
 - Set automatic preview deletion after a certain time period
