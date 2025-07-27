@@ -101,7 +101,7 @@ These can point to either:
 
 When you push a branch to GitHub:
 
-1. A Supabase preview environment is automatically created
+1. A Supabase preview environment is automatically created (for reference, see [Supabase Branching](../backend/deployment.md#supabase-preview-environments-branching))
 2. The migrations are applied to this preview environment
 3. This allows testing database changes in isolation before merging to main
 
