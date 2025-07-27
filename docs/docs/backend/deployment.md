@@ -21,8 +21,22 @@ The backend is deployed as a Docker container on Render. Render automatically bu
 - **Main Dockerfile:** [Dockerfile](https://github.com/jst-seminar-rostlab-tum/openeu-backend/blob/main/Dockerfile) - Contains the main application build instructions
 - **Base Dockerfile:** [Dockerfile.base](https://github.com/jst-seminar-rostlab-tum/openeu-backend/blob/main/Dockerfile.base) - Contains the base image configuration that serves to reduce deployment time by pre-building common dependencies and system packages
 
+**Redeploying the Base Docker Image:**
+If you make changes to the base image (`Dockerfile.base`), you need to rebuild and push the updated base image before deploying the main application image. This ensures all subsequent builds use the latest base image.
+
+Steps:
+1. Build the new base image locally:
+   ```bash
+   docker build -f Dockerfile.base -t your-registry/openeu-backend-base:latest .
+   ```
+2. Push the base image to your Docker registry:
+   ```bash
+   docker push your-registry/openeu-backend-base:latest
+   ```
+3. Trigger a rebuild of the main application image (push a commit or trigger a manual deploy in Render) so it uses the updated base image.
+
 **Build and Deploy Process on Render:**
-1. **Connect Repository:** Render is connected to the backend's Git repository (e.g., GitHub, GitLab).
+1. **Connect Repository:** Render is connected to the backend's Github repository
 2. **Dockerfile Detection:** Render automatically detects the `Dockerfile` in the repository.
 3. **Automated Builds:** Upon every push to the configured branch (e.g., `main`), Render triggers an automated build process:
    - It pulls the latest code.
@@ -61,28 +75,12 @@ The following environment variables must be configured in your Render service se
 
 ## Supabase Preview Environments (Branching)
 
-Supabase offers a powerful feature for preview environments through its branching capabilities. While the backend is deployed on Render, its interaction with Supabase can leverage this:
+- **Supabase Branch Integration:**
+- For each PR, a new Supabase database branch is automatically created
+- The branch is populated with seed data from [supabase/seed.sql](https://github.com/jst-seminar-rostlab-tum/openeu-backend/blob/main/supabase/seed.sql) which can also be extended for testing purpose.
+- The preview backend connects dynamically to the PR-specific Supabase branch using this function from [app/core/config.py](https://github.com/jst-seminar-rostlab-tum/openeu-backend/blob/d12295afd3dee45097b3cf79d4cb161dd76e398c/app/core/config.py#L12C5-L47C22)
+- This ensures complete isolation for testing database changes and API interactions
 
-- **Database Branching:** For each new feature branch in your backend repository, you can create a corresponding database branch in Supabase. This allows you to test backend changes against an isolated database schema and data, preventing conflicts with the main production database.
-
-- **Connecting Preview Backends:** When deploying a preview version of your backend (e.g., a staging environment on Render for a specific Git branch), you would configure that backend instance to connect to its dedicated Supabase database branch using the appropriate `SUPABASE_PROJECT_URL` and `SUPABASE_REST_KEY` for that branch.
-
-- **Isolated Testing:** This setup ensures that changes to your backend's database interactions can be thoroughly tested in isolation before merging to `main` and deploying to production.
-
-### Setting Up Supabase Branching
-
-1. **Create a Database Branch:**
-   - Go to your Supabase project dashboard
-   - Navigate to **Database** > **Branches**
-   - Create a new branch for your feature
-
-2. **Configure Backend for Branch:**
-   - Update your backend's environment variables to use the branch-specific Supabase URL and keys
-   - Deploy the backend to your staging environment
-
-3. **Test and Merge:**
-   - Test your changes against the branch database
-   - Once satisfied, merge your code changes and database schema changes
 
 ## Remote Deployment
 
@@ -98,18 +96,12 @@ Render automatically creates preview deployments for each pull request, allowing
 - You can configure which PRs should create previews (to manage costs)
 - **Cost Note:** The longer a preview exists, the more it costs, so remember to close PRs or delete previews when no longer needed
 
-**Supabase Branch Integration:**
-- For each PR, a new Supabase database branch is automatically created
-- The branch is populated with seed data from [supabase/seed.sql](https://github.com/jst-seminar-rostlab-tum/openeu-backend/blob/main/supabase/seed.sql)
-- The preview backend connects to the PR-specific Supabase branch using configuration from [app/core/config.py](https://github.com/jst-seminar-rostlab-tum/openeu-backend/blob/d12295afd3dee45097b3cf79d4cb161dd76e398c/app/core/config.py#L12C5-L47C22)
-- This ensures complete isolation for testing database changes and API interactions
+
 
 **Configuration Options:**
 - Enable/disable preview deployments for specific branches
 - Set automatic preview deletion after a certain time period
 - Configure preview environment variables (can be different from production)
-
-### Staging/Preview Environments
 
 ## Build and Deploy Process
 
