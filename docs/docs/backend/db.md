@@ -130,3 +130,4 @@ When a PR is merged to main:
 
 - [Supabase Documentation](https://supabase.com/docs)
 - [Supabase CLI Reference](https://supabase.com/docs/reference/cli)
+- [Supabase Declarative Schema](https://supabase.com/docs/guides/local-development/declarative-database-schemas)
